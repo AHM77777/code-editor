@@ -10,15 +10,14 @@ const Login = () => {
   return <>
     {!session && <div className={styles.navBar}>
       <p className={styles.sessionInfo}>Not signed in</p> <br/>
-      <Button className="float-right" variant="dark" onClick={() => signIn()}>Sign in</Button>
+      <Button className={styles.buttonLog} variant="dark" onClick={() => signIn()}>Sign in</Button>
     </div>}
     {session && loading && <div>
       <div className={styles.sessionInfo}>Loading...</div>
     </div>}
     {session &&<div className={styles.navBar}>
-      <p className={styles.sessionInfo}>Welcome {session.user.name}!</p> <br/>
-      <Button className="float-right" variant="dark" onClick={() => signOut()}>Sign out</Button>
-      <br/><hr/>
+      <p className={styles.sessionInfo}>Welcome {session.user.name}</p> <br/>
+      <Button className={styles.buttonLog} variant="dark" onClick={() => signOut()}>Sign out</Button>
 
     </div>}
   </>
