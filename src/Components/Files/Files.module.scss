@@ -1,0 +1,24 @@
+.filesContainer {
+    position: fixed;
+    left: 250px;
+    width: 250px;
+    height: 100%;
+    margin-left: -250px;
+    overflow-y: auto;
+    background: #282a36;
+}
+
+.editor{
+    position: relative;
+    margin-right: 30px;
+    margin-left: 280px;
+    height: 50vh;
+    
+}
+
+.preview {
+    position: relative;
+    margin-right: 30px;
+    margin-left: 800px;
+    height: 100%;
+}
