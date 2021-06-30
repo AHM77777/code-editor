@@ -1,8 +1,16 @@
 .editorContainer {
+    display: inline-block;
     border: solid #343746;
+    background-color: #282a36;
     border-radius: 10px;
-    width: 30%;
+    width: 100%;
+    height: 100%;
     margin: 10px;
+
+    .codeMirrorWrapper {
+        margin: 10px;
+        border-radius: 10px;
+    }
 
     .editorTitle {
         align-items: center;

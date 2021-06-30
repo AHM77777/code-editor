@@ -19,8 +19,12 @@ const EditorPage = () => {
 
         setSrcDoc(`
         <html>
+            <head>
+                <style>
+                ${css}
+                </style>
+            </head>
             <body>${html}</body>
-            <style>${css}</style>
             <script>${js}</script>
         </html>
     `)
@@ -28,30 +32,39 @@ const EditorPage = () => {
     }, [html, css, js])
 
 
-    return ( 
-        <>
-        {/* <div>
-            <Login />
-        </div> */}
+    return ( <>
+    <Login />
+        <div className={styles.mainContainer}>
             
             <div>
             <Files />
             </div>
-            <div className={styles.editor}>
-                <Editor language="xml" value={html} onChange={setHtml} displayName="HTML"/>
-                <Editor language="css" value={css} onChange={setCss} displayName="CSS"/>
-                <Editor language="javascript" value={js} onChange={setJs} displayName="JS"/>
+            
+            <div className={styles.leftPage}>
+            
+            
+
+            <div className={styles.editorContainer}>
+
+                <div className={styles.editor}>
+                    <Editor language="xml" value={html} onChange={setHtml} displayName="HTML"/>
+                    <Editor language="css" value={css} onChange={setCss} displayName="CSS"/>
+                    <Editor language="javascript" value={js} onChange={setJs} displayName="JS"/>
+                </div>
+
+                <div className={styles.preview}>
+                    <iframe
+                        srcDoc={srcDoc}
+                        title="output"
+                        sandbox="allow-scripts"
+                        frameBorder="0"
+                        width="100%"
+                        height="100%"
+                    />
+                </div>
             </div>
-            <div className={styles.preview}>
-                <iframe
-                    srcDoc={srcDoc}
-                    title="output"
-                    sandbox="allow-scripts"
-                    frameBorder="0"
-                    width="100%"
-                    height="100%"
-                />
             </div>
+        </div>
         </>
      );
 }
