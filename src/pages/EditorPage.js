@@ -3,6 +3,7 @@ import Editor from '../Components/Editor/Editor'
 import 'codemirror/lib/codemirror.css'
 import { useEffect, useState } from "react";
 import styles from '../Components/Files/Files.module.scss'
+import  Login  from "../Components/Login/Login"
 
 const EditorPage = () => {
 
@@ -29,6 +30,10 @@ const EditorPage = () => {
 
     return ( 
         <>
+        {/* <div>
+            <Login />
+        </div> */}
+            
             <div>
             <Files />
             </div>
