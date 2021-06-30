@@ -2,10 +2,12 @@ import styles from './Editor.module.scss'
 
 let CodeMirror = null;
 if (typeof window !== 'undefined' && typeof window.navigator !== 'undefined') {
-  CodeMirror = 
-  require('react-codemirror');
-  require('codemirror/mode/xml/xml');
-  require('codemirror/theme/dracula.css');
+    CodeMirror = 
+    require('react-codemirror');
+    require('codemirror/mode/xml/xml');
+    require('codemirror/mode/css/css');
+    require('codemirror/mode/javascript/javascript');
+    require('codemirror/theme/dracula.css');
 }
 
 
@@ -19,18 +21,18 @@ const{
 } = props;
 
 function handleChange(editor, data, value){
-onChange(value)
+    onChange(editor)
 }
 
 return (  
     <div className={styles.editorContainer}>
 
         <div className={styles.editorTitle}>
-            <h3>{displayName}</h3>
+            <h3 className={styles.disName}>{displayName}</h3>
         </div>
 
         {CodeMirror && <CodeMirror
-            OnBeforeChange={handleChange}
+            onChange={handleChange}
             value={value}
             className= {styles.codeMirrorWrapper}
             options={{
@@ -41,7 +43,7 @@ return (
                 lineNumbers:true
             }}
         />}
-        
+
     </div>
 );
 }
