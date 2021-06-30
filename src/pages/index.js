@@ -1,5 +1,9 @@
+import  Login  from "../../components/Login"
 function HomePage() {
-  return <div>Welcome to Next.js!</div>
+  return <>
+  <Login ></Login >
+  </>
+  
 }
 
 export default HomePage
