@@ -1,0 +1,11 @@
+p.sessionInfo{
+    font-size: 15px;
+    text-align: right;
+    margin-bottom: -20px;
+}
+.navBar{
+    float: right;
+    margin-right: 2%;
+    background-color: rgb(0, 0, 0);
+    color: whitesmoke;
+}
