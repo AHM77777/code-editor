@@ -1,15 +1,14 @@
-import Files from '../Components/Files/Files';
 import Editor from '../Components/Editor/Editor'
 import 'codemirror/lib/codemirror.css'
 import { useEffect, useState } from "react";
-import styles from '../Components/Files/Files.module.scss'
-import  Login  from "../Components/Login/Login"
+import styles from '../Components/Files.module.scss'
+import  NavBar  from "../Components/NavBar/NavBar"
 
 const EditorPage = () => {
 
-    const [html, setHtml] = useState('')
-    const [css, setCss] = useState('')
-    const [js, setJs] = useState('')
+    const [html, setHtml] = useState(null)
+    const [css, setCss] = useState(null)
+    const [js, setJs] = useState(null)
 
 
     const [srcDoc, setSrcDoc] = useState('')
@@ -17,9 +16,20 @@ const EditorPage = () => {
 
     useEffect(() => {
 
+        fetch('http://localhost:3000/api/files')
+        .then((res) => res.json())
+        .then((data) =>{
+            setHtml(data.html)
+            setCss(data.css)
+            setJs(data.javascript)
+        })
+
+    }, [])
+
+    useEffect(() => {
         setSrcDoc(`
         <html>
-            <head>
+            <head></head>
                 <style>
                 ${css}
                 </style>
@@ -31,14 +41,9 @@ const EditorPage = () => {
         
     }, [html, css, js])
 
-
     return ( <>
-    <Login />
+    <NavBar />
         <div className={styles.mainContainer}>
-            
-            <div>
-            <Files />
-            </div>
             
             <div className={styles.leftPage}>
             
@@ -47,9 +52,9 @@ const EditorPage = () => {
             <div className={styles.editorContainer}>
 
                 <div className={styles.editor}>
-                    <Editor language="xml" value={html} onChange={setHtml} displayName="HTML"/>
-                    <Editor language="css" value={css} onChange={setCss} displayName="CSS"/>
-                    <Editor language="javascript" value={js} onChange={setJs} displayName="JS"/>
+                    {!!html && <Editor language="xml" value={html} onChange={setHtml} displayName="HTML"/>}
+                    {!!css && <Editor language="css" value={css} onChange={setCss} displayName="CSS"/>}
+                    {!!js && <Editor language="javascript" value={js} onChange={setJs} displayName="JS"/>}
                 </div>
 
                 <div className={styles.preview}>
