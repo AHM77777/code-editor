@@ -36,6 +36,7 @@ return (
             value={value}
             className= {styles.codeMirrorWrapper}
             options={{
+                
                 lineWrapping: true,
                 lint: true,
                 mode: language,
