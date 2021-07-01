@@ -2,7 +2,7 @@ import Editor from '../Components/Editor/Editor'
 import 'codemirror/lib/codemirror.css'
 import { useEffect, useState } from "react";
 import styles from '../Components/Files.module.scss'
-import  Login  from "../Components/Login/Login"
+import  NavBar  from "../Components/NavBar/NavBar"
 
 const EditorPage = () => {
 
@@ -42,7 +42,7 @@ const EditorPage = () => {
     }, [html, css, js])
 
     return ( <>
-    <Login />
+    <NavBar />
         <div className={styles.mainContainer}>
             
             <div className={styles.leftPage}>
