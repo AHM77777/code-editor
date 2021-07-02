@@ -9,9 +9,6 @@ function HomePage() {
   }
   return <>
   <NavBar />
-
-  
-
   <button onClick={handleClick}>Nuevo</button> <button>Cargar </button>
   </>
 }
