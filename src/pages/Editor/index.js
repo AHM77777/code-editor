@@ -1,32 +1,34 @@
-import Editor from '../Components/Editor/Editor'
+import Editor from '../../Components/Editor/Editor'
 import 'codemirror/lib/codemirror.css'
 import { useEffect, useState } from "react";
-import styles from '../Components/Files.module.scss'
-import  NavBar  from "../Components/NavBar/NavBar"
+import styles from '../../Components/Files.module.scss'
+import  NavBar  from "../../Components/NavBar/NavBar"
 
-const EditorPage = () => {
+
+const EditorPage = ({file}) => {
 
     const [html, setHtml] = useState(null)
     const [css, setCss] = useState(null)
     const [js, setJs] = useState(null)
 
-
     const [srcDoc, setSrcDoc] = useState('')
-    
+
 
     useEffect(() => {
-
-        fetch('http://localhost:3000/api/files')
-        .then((res) => res.json())
-        .then((data) =>{
-            setHtml(data.html)
-            setCss(data.css)
-            setJs(data.javascript)
-        })
-
+    if(file) {
+            setHtml(file.code.html)
+            setCss(file.code.css)
+            setJs(file.code.js)
+   
+    } else {
+            setHtml('')
+            setCss('')
+            setJs('')
+    }
     }, [])
 
     useEffect(() => {
+
         setSrcDoc(`
         <html>
             <head></head>
@@ -46,8 +48,6 @@ const EditorPage = () => {
         <div className={styles.mainContainer}>
             
             <div className={styles.leftPage}>
-            
-            
 
             <div className={styles.editorContainer}>
 

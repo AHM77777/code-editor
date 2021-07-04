@@ -1,18 +1,31 @@
 import  NavBar  from "../Components/NavBar/NavBar"
-import { useRouter } from 'next/router'
+import Link from 'next/link'
 
-function HomePage() {
-  const router = useRouter()
-  const handleClick = (e) => {
-    e.preventDefault()
-    router.push('/EditorPage')
+export const getStaticProps = async () => {
+  const res = await fetch('http://localhost:8000/files');
+  const data = await res.json();
+
+  return {
+    props: { files: data }
   }
+}
+
+function HomePage({files}) {
+
+const handleClick = () => {
+  console.log('Fuera de servicio')
+}
+  
   return <>
   <NavBar />
 
-  
+  <button onClick={handleClick}>Nuevo</button>
 
-  <button onClick={handleClick}>Nuevo</button> <button>Cargar </button>
+  {files.map((file) => (
+    <Link href={'/Editor/'+file.id} key={file.id} onClick={() => goFile(file)}>
+      {file.name}
+    </Link>
+  ))}
   </>
 }
 
