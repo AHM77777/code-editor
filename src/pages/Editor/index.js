@@ -7,25 +7,12 @@ import  NavBar  from "../../Components/NavBar/NavBar"
 
 const EditorPage = ({file}) => {
 
-    const [html, setHtml] = useState(null)
-    const [css, setCss] = useState(null)
-    const [js, setJs] = useState(null)
+    const [html, setHtml] = useState(file? file.code.html : '')
+    const [css, setCss] = useState(file? file.code.css : '')
+    const [js, setJs] = useState(file? file.code.js : '')
 
     const [srcDoc, setSrcDoc] = useState('')
 
-
-    useEffect(() => {
-    if(file) {
-            setHtml(file.code.html)
-            setCss(file.code.css)
-            setJs(file.code.js)
-   
-    } else {
-            setHtml('')
-            setCss('')
-            setJs('')
-    }
-    }, [])
 
     useEffect(() => {
 
@@ -52,9 +39,9 @@ const EditorPage = ({file}) => {
             <div className={styles.editorContainer}>
 
                 <div className={styles.editor}>
-                    {!!html && <Editor language="xml" value={html} onChange={setHtml} displayName="HTML"/>}
-                    {!!css && <Editor language="css" value={css} onChange={setCss} displayName="CSS"/>}
-                    {!!js && <Editor language="javascript" value={js} onChange={setJs} displayName="JS"/>}
+                    <Editor language="xml" value={html} onChange={setHtml} displayName="HTML"/>
+                    <Editor language="css" value={css} onChange={setCss} displayName="CSS"/>
+                    <Editor language="javascript" value={js} onChange={setJs} displayName="JS"/>
                 </div>
 
                 <div className={styles.preview}>
