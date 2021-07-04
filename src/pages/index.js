@@ -18,8 +18,7 @@ const handleClick = () => {
   
   return <>
   <NavBar />
-
-  <button onClick={handleClick}>Nuevo</button>
+  <Link href={'/Editor/'}>Nuevo</Link>
 
   {files.map((file) => (
     <Link href={'/Editor/'+file.id} key={file.id} onClick={() => goFile(file)}>

@@ -7,11 +7,35 @@ import  NavBar  from "../../Components/NavBar/NavBar"
 
 const EditorPage = ({file}) => {
 
-    const [html, setHtml] = useState(file? file.code.html : '')
-    const [css, setCss] = useState(file? file.code.css : '')
-    const [js, setJs] = useState(file? file.code.js : '')
+    const [html, setHtml] = useState(file ? file.code.html : '')
+    const [css, setCss] = useState(file ? file.code.css : '')
+    const [js, setJs] = useState(file ? file.code.js : '')
+    const [projectName, setProjectName] = useState(file ? file.name : 'New Project')
 
     const [srcDoc, setSrcDoc] = useState('')
+
+    const saveAction = ()=> {
+
+        const newFile = {
+            "name" : projectName,
+            "code" : {
+                "html" : html,
+                "css" : css,
+                "js" : js
+            }
+        }
+        try {
+            fetch(`http://localhost:8000/files/${file ? file.id: ''}` , {
+				method: file ? 'PUT' : 'POST' ,
+				headers: { "Content-Type": "application/json"},
+				body: JSON.stringify(newFile)
+			})
+            file ? window.alert(`File saved succesfully!`) : window.alert(`New file created!`)
+        } catch (error) {
+            window.alert(`Error: ${error}`)
+        }
+        
+    }
 
     useEffect(() => {
 
@@ -29,6 +53,8 @@ const EditorPage = ({file}) => {
         
     }, [html, css, js])
 
+    
+
     return ( <>
     <NavBar />
         <div className={styles.mainContainer}>
@@ -45,7 +71,8 @@ const EditorPage = ({file}) => {
                 <div className={styles.setCol}>
                     <div className={styles.previewInfo}>
                         <p className={styles.saveButton} onClick={saveAction}>Save</p>
-                        <p className={styles.centerText}>Proyect name</p>
+                        <input className={styles.centerText} type="text"
+					value={projectName} onChange={(e) => setProjectName(e.target.value)}></input>
                     </div>
 
                     <div className={styles.preview}>
