@@ -13,7 +13,9 @@ const EditorPage = () => {
 
     const [srcDoc, setSrcDoc] = useState('')
     
-
+    const saveAction = ()=>{
+        window.alert('Saved succesfully!');
+    }
     useEffect(() => {
 
         fetch('http://localhost:3000/api/files')
@@ -56,17 +58,24 @@ const EditorPage = () => {
                     {!!css && <Editor language="css" value={css} onChange={setCss} displayName="CSS"/>}
                     {!!js && <Editor language="javascript" value={js} onChange={setJs} displayName="JS"/>}
                 </div>
+                <div className={styles.setCol}>
+                    <div className={styles.previewInfo}>
+                        <p className={styles.saveButton} onClick={saveAction}>Save</p>
+                        <p className={styles.centerText}>Proyect name</p>
+                    </div>
 
-                <div className={styles.preview}>
-                    <iframe
-                        srcDoc={srcDoc}
-                        title="output"
-                        sandbox="allow-scripts"
-                        frameBorder="0"
-                        width="100%"
-                        height="100%"
-                    />
+                    <div className={styles.preview}>
+                        <iframe
+                            srcDoc={srcDoc}
+                            title="output"
+                            sandbox="allow-scripts"
+                            frameBorder="0"
+                            width="100%"
+                            height="100%"
+                        />
+                    </div>
                 </div>
+                
             </div>
             </div>
         </div>

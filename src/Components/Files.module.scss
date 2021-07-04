@@ -47,15 +47,48 @@
                 @extend .scrollbar;
                 
             }
-
+            .setCol{
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                margin: 5px;
+            }
+            .previewInfo{
+                background-color: #20222b;
+                display:inline-flex;
+                align-items: center;
+                width: 100%;
+                
+                p{
+                    color: whitesmoke;
+                    margin: 10px;
+                    font-size: 1.2em;
+                }
+                .saveButton{
+                    margin: 5px;
+                    text-align: center;
+                    margin-left: 10px;
+                    background-color: transparent;
+                }
+                .saveButton:hover{
+                    color: rgba(148, 144, 144, 0.822);
+                    background-color: transparent;
+                    cursor: pointer;
+                }
+                .centerText{
+                    text-align: center;
+                    width:max-content;
+                    flex-grow: 2;
+                }
+            }
             .preview {
-                width: 1000px;
-                margin: 20px;
-                padding: 20px;
+                width: 100vh;
                 flex-grow: 1;
                 overflow: scroll;
                 background-color: white;
-            }
+                
+                }
+            
         }
     }
 
