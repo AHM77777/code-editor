@@ -2,7 +2,7 @@ import Editor from '../Components/Editor/Editor'
 import 'codemirror/lib/codemirror.css'
 import { useEffect, useState } from "react";
 import styles from '../Components/Files.module.scss'
-import  Login  from "../Components/Login/Login"
+import  NavBar  from "../Components/NavBar/NavBar"
 
 const EditorPage = () => {
 
@@ -13,7 +13,9 @@ const EditorPage = () => {
 
     const [srcDoc, setSrcDoc] = useState('')
     
-
+    const saveAction = ()=>{
+        window.alert('Saved succesfully!');
+    }
     useEffect(() => {
 
         fetch('http://localhost:3000/api/files')
@@ -42,7 +44,7 @@ const EditorPage = () => {
     }, [html, css, js])
 
     return ( <>
-    <Login />
+    <NavBar />
         <div className={styles.mainContainer}>
             
             <div className={styles.leftPage}>
@@ -56,17 +58,24 @@ const EditorPage = () => {
                     {!!css && <Editor language="css" value={css} onChange={setCss} displayName="CSS"/>}
                     {!!js && <Editor language="javascript" value={js} onChange={setJs} displayName="JS"/>}
                 </div>
+                <div className={styles.setCol}>
+                    <div className={styles.previewInfo}>
+                        <p className={styles.saveButton} onClick={saveAction}>Save</p>
+                        <p className={styles.centerText}>Proyect name</p>
+                    </div>
 
-                <div className={styles.preview}>
-                    <iframe
-                        srcDoc={srcDoc}
-                        title="output"
-                        sandbox="allow-scripts"
-                        frameBorder="0"
-                        width="100%"
-                        height="100%"
-                    />
+                    <div className={styles.preview}>
+                        <iframe
+                            srcDoc={srcDoc}
+                            title="output"
+                            sandbox="allow-scripts"
+                            frameBorder="0"
+                            width="100%"
+                            height="100%"
+                        />
+                    </div>
                 </div>
+                
             </div>
             </div>
         </div>
