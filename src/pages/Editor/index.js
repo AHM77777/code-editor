@@ -4,6 +4,7 @@ import { useEffect, useState } from "react";
 import styles from '../../Components/Files.module.scss'
 import  NavBar  from "../../Components/NavBar/NavBar"
 import { useRouter } from 'next/router';
+import { useSession } from 'next-auth/client';
 
 
 const EditorPage = ({file}) => {
@@ -14,6 +15,7 @@ const EditorPage = ({file}) => {
 
     const [srcDoc, setSrcDoc] = useState('')
 
+    const [ session ] = useSession();
     const router = useRouter();
 
     const saveAction = async file => {
@@ -31,7 +33,10 @@ const EditorPage = ({file}) => {
                 const response = await fetch(`http://localhost:3000/api/files/add`, {
                     method: 'POST' ,
                     headers: { "Content-Type": "application/json"},
-                    body: JSON.stringify(newFile)
+                    body: JSON.stringify({
+                        ...newFile,
+                        owner_email: session.user.email
+                    })
                 })
                 const data = await response.json()
 

@@ -2,13 +2,15 @@ import  NavBar  from "../Components/NavBar/NavBar"
 import Link from 'next/link'
 import styles from '../Homepage.module.scss'
 import { useSession } from 'next-auth/client'
+import { useState } from "react";
 
-export const getStaticProps = async () => {
-  const res = await fetch('http://localhost:3000/api/files');
-  const data = await res.json();
+export const getServerSideProps = async (context) => {
+  // Get files for user
+  const res = await fetch('http://localhost:3000/api/files?user='+context.req.cookies['next-auth.session-token']);
+  //const data = await res.json();
 
   return {
-    props: { files: data }
+    props: {files: []}
   }
 }
 
