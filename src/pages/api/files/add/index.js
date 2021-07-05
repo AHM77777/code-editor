@@ -4,11 +4,10 @@ import FileSchema from "../../../../models/File";
 async function handler(req, res) {
   // Create new file
   const added = await FileSchema.create({
-    filename: 'Test File' + Math.random(0, 99999999999999999999),
-    html: '',
-    css: '',
-    js: '',
-    projectId: '1'
+    filename: req.body.name,
+    html: req.body.code.html,
+    css: req.body.code.css,
+    js: req.body.code.js
   });
 
   res.json({ status: added });

@@ -25,9 +25,6 @@ const FileSchema = new mongoose.Schema({
     date_updated: {
         type: Date,
         default: Date.now
-    },
-    projectId: {
-      type: String
     }
 });
 
