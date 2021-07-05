@@ -1,3 +1,5 @@
+import  Login  from "../components/Login/Login"
+function HomePage() {
 import  NavBar  from "../Components/NavBar/NavBar"
 import Link from 'next/link'
 
@@ -15,7 +17,7 @@ function HomePage({files}) {
 const handleClick = () => {
   console.log('Fuera de servicio')
 }
-  
+
   return <>
   <NavBar />
   <Link href={'/Editor/'}>Nuevo</Link>
