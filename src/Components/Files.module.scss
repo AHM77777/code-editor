@@ -1,0 +1,114 @@
+.scrollbar{
+    ::-webkit-scrollbar{
+        width: 13px;
+        height: 13px;
+        }
+        ::-webkit-scrollbar-thumb{
+        background: linear-gradient(15deg, #CEC9CF 14%,#CEC9CF 64%);
+        border-radius: 10px;
+        }
+        ::-webkit-scrollbar-thumb:hover{
+        background: linear-gradient(20deg, #A29EA3 14%,#A29EA3 64%);
+        }
+        ::-webkit-scrollbar-track{
+        background: transparent;
+        border-radius: 10px;
+        box-shadow: inset 7px 10px 12px 0px transparent;
+        }
+}
+
+.mainContainer {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    background-color: #535355;
+    .leftPage {
+        height: 100%;
+        width:100%;
+        display: flex;
+        flex-direction: column;
+    
+        .editorContainer{
+            display: flex;
+            flex-direction: row;
+            width: 100%;
+            flex-grow: 0;
+            height: 100%;
+
+            .editor{
+                flex-direction: column;
+                margin-right: 30px;
+                height: 100%;
+                // width: 100%;
+                width: 30%;
+                min-width: 450px;
+                @extend .scrollbar;
+                
+            }
+            .setCol{
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                margin: 5px;
+            }
+            .previewInfo{
+                background-color: #20222b;
+                display:inline-flex;
+                align-items: center;
+                width: 100%;
+                
+                p{
+                    color: whitesmoke;
+                    margin: 10px;
+                    font-size: 1.2em;
+                }
+                .saveButton{
+                    margin: 5px;
+                    text-align: center;
+                    margin-left: 10px;
+                    background-color: transparent;
+                }
+                .saveButton:hover{
+                    color: rgba(148, 144, 144, 0.822);
+                    background-color: transparent;
+                    cursor: pointer;
+                }
+                .centerText{
+                    text-align: center;
+                    width:max-content;
+                    flex-grow: 2;
+                    color: whitesmoke;
+                    margin: 10px;
+                    font-size: 1.2em;
+                    background-color: transparent;
+                    border-color: transparent;
+                }
+                .centerText:focus{
+                    @extend .centerText;
+                    border-color: transparent;
+                }
+            }
+            .preview {
+                width: 100vh;
+                flex-grow: 1;
+                overflow: scroll;
+                background-color: white;
+                
+                }
+            
+        }
+    }
+
+}
+
+.filesContainer {
+    position: fixed;
+    left: 250px;
+    width: 250px;
+    height: 100%;
+    margin-left: -250px;
+    background: #282a36;
+}
+

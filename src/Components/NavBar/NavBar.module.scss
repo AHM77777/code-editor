@@ -1,0 +1,49 @@
+.navBar{
+    position: sticky;
+    top:0;
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    background-color: #20222b;
+    color: whitesmoke;
+    align-items: center;
+    justify-content: space-between;
+    padding-left: 15px;
+    z-index: 5;
+    .loginWrapper{
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        justify-content: space-between;
+        padding-right: 25px;
+        .homePage{
+            font-size: 20px;
+            margin: 5px;
+            margin-right: 20px;
+        }
+        .homePage:hover{
+            font-size: 20px;
+            margin: 5px;
+            margin-right: 20px;
+            color: rgba(148, 144, 144, 0.822);
+            background-color: transparent;
+            cursor:pointer;
+        }
+    }
+    div {
+       .sessionInfo{
+        font-size: 20px;
+        margin-left: 10px;
+        transform: translateY(50%);
+        align-items: center; 
+    }
+    }
+    .buttonLog{
+        margin: 5px;
+        background-color: transparent;
+    }
+    .buttonLog:hover{
+        color: rgba(148, 144, 144, 0.822);
+        background-color: transparent;
+    }
+}
