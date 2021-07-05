@@ -9,9 +9,6 @@ async function handler(req, res) {
     css: req.body.code.css,
     js: req.body.code.js
   }, (err, result) => {
-    console.log(err)
-    console.log(result)
-
     if (err) {
       res.status(500).json({message: err.message})
     } else {
