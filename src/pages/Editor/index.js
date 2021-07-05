@@ -3,6 +3,7 @@ import 'codemirror/lib/codemirror.css'
 import { useEffect, useState } from "react";
 import styles from '../../Components/Files.module.scss'
 import  NavBar  from "../../Components/NavBar/NavBar"
+import { useRouter } from 'next/router';
 
 
 const EditorPage = ({file}) => {
@@ -12,6 +13,8 @@ const EditorPage = ({file}) => {
     const [projectName, setProjectName] = useState(file ? file.filename : 'New Project')
 
     const [srcDoc, setSrcDoc] = useState('')
+
+    const router = useRouter();
 
     const saveAction = async file => {
         if (!file) {
@@ -25,12 +28,19 @@ const EditorPage = ({file}) => {
             }
     
             try {
-                await fetch(`http://localhost:3000/api/files/add`, {
+                const response = await fetch(`http://localhost:3000/api/files/add`, {
                     method: 'POST' ,
                     headers: { "Content-Type": "application/json"},
                     body: JSON.stringify(newFile)
                 })
-                window.alert(`New file created!`)
+                const data = await response.json()
+
+                if (response.status === 200) {
+                    window.alert(`New file created!`)
+                    router.push('/Editor/'+ data.file_id.toString())
+                } else {
+                    throw new Error(data.message)
+                }
             } catch (error) {
                 window.alert(`Error: ${error}`)
             }
@@ -46,7 +56,7 @@ const EditorPage = ({file}) => {
             }
 
             try {
-                await fetch("http://localhost:300/api/files/update", {
+                await fetch("http://localhost:3000/api/files/update", {
                     method: 'PUT',
                     headers: { "Content-Type" : "application/json"},
                     body: JSON.stringify(updateFile)
