@@ -61,7 +61,12 @@ const EditorPage = ({file}) => {
                     headers: { "Content-Type" : "application/json"},
                     body: JSON.stringify(updateFile)
                 })
-                window.alert('File updated!')
+
+                if (response.status === 200) {
+                    window.alert('File updated!')
+                } else {
+                    throw new Error('There was an error updating the file')
+                }
             } catch (error) {
                 window.alert('Error: ' + error)
             }
@@ -69,7 +74,6 @@ const EditorPage = ({file}) => {
     }
 
     useEffect(() => {
-
         setSrcDoc(`
         <html>
             <head></head>
