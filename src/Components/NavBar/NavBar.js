@@ -10,7 +10,7 @@ const NavBar = () => {
     const router = useRouter()
     const handleClick = (e) => {
       e.preventDefault()
-      router.push('/HomePage')
+      router.push('/')
     }
     // console.log(session)
   return <>

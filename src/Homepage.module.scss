@@ -1,0 +1,55 @@
+#projectManager {
+  border: 1px solid #000;
+  width: 60%;
+  margin: 0 auto;
+  margin-top: 20px;
+  border-radius: 3px;
+
+  h5 {
+    text-align: center;
+    border-bottom: 1px solid #000;
+    margin-bottom: 0;
+  }
+
+  ul {
+    list-style-type: none;
+    padding-left: 0;
+    text-align: center;
+    font-size: 1.5em;
+    margin-bottom: 0;
+
+    li {
+      background-color: #e2dcdc;
+      padding: 8px;
+
+      a {
+        color: #212529;
+        margin-left: 5px;
+      }
+
+      &:not(:last-child) {
+        border-bottom: 1px solid #000;
+      }
+
+      &:last-child {
+        background-color: #6ac36a;
+
+        a {
+          color: green;
+        }
+      }
+    }
+  }
+}
+
+#loginNotice {
+  li {
+    background-color: #eaa3a3 !important;
+    color: #d04646;
+  }
+}
+
+#mainContent {
+  margin-top: 90px;
+  text-align: center;
+}
