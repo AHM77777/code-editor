@@ -1,3 +1,4 @@
+import  Login  from "../components/Login/Login"
 import  NavBar  from "../Components/NavBar/NavBar"
 import Link from 'next/link'
 import styles from '../Homepage.module.scss'
