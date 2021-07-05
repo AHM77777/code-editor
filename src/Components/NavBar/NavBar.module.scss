@@ -8,12 +8,14 @@
     color: whitesmoke;
     align-items: center;
     justify-content: space-between;
+    padding-left: 15px;
     z-index: 5;
     .loginWrapper{
         display: flex;
         flex-direction: row;
         align-items: center;
         justify-content: space-between;
+        padding-right: 25px;
         .homePage{
             font-size: 20px;
             margin: 5px;
