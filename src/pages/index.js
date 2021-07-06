@@ -20,32 +20,41 @@ function HomePage({files}) {
 
   return <>
   <NavBar />
-
+  {!session && <div id={styles.loginNotice}><div>Please log in to use the app</div> </div>}
   <div id={styles.mainContent}>
-    <div>
-      <h4>Online Code Editor</h4>
-      <h6>Real-time code editing, to practice your skills and showoff your (simple) projects</h6>
+    <div className={styles.separator}>
+      <div>
+        <h4 className={styles.codeHead}>Online Code Editor</h4>
+        <h6 className={styles.codeSubHead}>Real-time code editing, to practice your skills and showoff your (simple) projects</h6>
+      </div>
+      <div>
+        <p>Our code editor is able to handle your HTML/CSS/JS projects, rendering the output in an iframe, so you can see your changes as you type them.</p>
+      </div>
     </div>
-    <div>
-      <p>Our code editor is able to handle your HTML/CSS/JS projects, rendering the output in an iframe, so you can see your changes as you type them.</p>
-    </div>
+    {typeof session !== 'undefined' &&
+    <div className={styles.projectMain}>
+      <div id={styles.projectManager}>
+        <h5>Project Manager</h5><br/>
+        <Link href={'/Editor/'}><div className={styles.title}>Add new</div></Link>
+        {session &&
+        <div className={styles.showProjects}>
+        {files.length > 0 ? files.map((file) => (
+          
+            <Link href={'/Editor/'+file._id}>
+              <div className={styles.elementCreated} key={file._id}>
+              {file.filename}
+              </div>
+            </Link>
+          
+        )) : ''}
+        {files.length < 1 ? <div>No project created yet</div> : ''}
+        
+        </div>}
+        
+      </div>
+    </div>}
   </div>
-  {typeof session !== 'undefined' &&
-  <div id={styles.projectManager}>
-    <h5>Project Manager</h5>
-    {session &&
-    <ul>
-    {files.length > 0 ? files.map((file) => (
-      <li key={file._id}>
-        {file.filename}
-        <Link href={'/Editor/'+file._id}>[edit]</Link>
-      </li>
-    )) : ''}
-    {files.length < 1 ? <li>No project created yet</li> : ''}
-    <li><Link href={'/Editor/'}>Add new</Link></li>
-    </ul>}
-    {!session && <ul id={styles.loginNotice}><li>Please log in to use the app</li> </ul>}
-  </div>}
+  
   </>
 }
 
