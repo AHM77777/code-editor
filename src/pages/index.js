@@ -6,9 +6,11 @@ import { useState } from "react";
 
 export const getServerSideProps = async (context) => {
   // Get files for user
-  //const res = await fetch('http://localhost:3000/api/files?user='+context.req.cookies['next-auth.session-token']);
-  const res = await fetch('http://localhost:3000/api/files');
-  const data = await res.json();
+  let data = []
+  if (context.req.cookies['next-auth.session-token']) {
+    const res = await fetch('http://localhost:3000/api/files?user='+context.req.cookies['next-auth.session-token']);
+    data = await res.json();
+  }
 
   return {
     props: {files: data}

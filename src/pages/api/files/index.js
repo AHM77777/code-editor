@@ -13,19 +13,12 @@ export default async function handler(req, res) {
     const user = await UserSchema.findOne({
       _id: session.userId
     });
+
+    const files = await FileSchema.find({
+      owner: mongoose.Types.ObjectId(user._id)
+    });
   
-    try {
-      await user.populate({
-        path: 'files',
-        match: {},
-        options: {}
-      }).execPopulate();
-      console.log(user);
-  
-      res.status(200).json(files);
-    } catch (e) {
-      res.status(500).send();
-    } 
+    res.status(200).json(files);
   } else {
     const files = await FileSchema.find();
     res.status(200).json(files);
