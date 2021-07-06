@@ -2,7 +2,6 @@ import  NavBar  from "../Components/NavBar/NavBar"
 import Link from 'next/link'
 import styles from '../Homepage.module.scss'
 import { useSession } from 'next-auth/client'
-import { useState } from "react";
 
 export const getServerSideProps = async (context) => {
   // Get files for user
