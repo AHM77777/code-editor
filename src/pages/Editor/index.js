@@ -8,6 +8,7 @@ import { useSession } from 'next-auth/client';
 
 
 const EditorPage = ({file}) => {
+    const [auth, setAuth] = useState(false)
     const [html, setHtml] = useState(file ? file.html : '')
     const [css, setCss] = useState(file ? file.css : '')
     const [js, setJs] = useState(file ? file.js : '')
@@ -15,7 +16,7 @@ const EditorPage = ({file}) => {
 
     const [srcDoc, setSrcDoc] = useState('')
 
-    const [ session ] = useSession();
+    const [ session, loading ] = useSession();
     const router = useRouter();
 
     const saveAction = async file => {
@@ -78,7 +79,19 @@ const EditorPage = ({file}) => {
         }
     }
 
-    useEffect(() => {
+    useEffect(async () => {
+        if (!auth && typeof session !== 'undefined') {
+            const userid = session.accessToken;
+            const res = await fetch('http://localhost:3000/api/files/' + file._id + '/auth/' + userid);
+            console.log(res)
+
+            if (res.status == 400) {
+                router.push('/Forbidden');
+            } else {
+                setAuth(true)
+            }
+        }
+
         setSrcDoc(`
         <html>
             <head></head>
@@ -91,7 +104,7 @@ const EditorPage = ({file}) => {
         </html>
     `)
         
-    }, [html, css, js])
+    }, [auth, html, css, js])
 
     
 

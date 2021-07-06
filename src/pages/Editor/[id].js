@@ -27,8 +27,7 @@ export const getStaticProps = async (context) => {
 
 
 const OpenProject = ({file}) => {
-
-    return ( 
+    return (
         <>
         <EditorPage file={file} />
         </>
