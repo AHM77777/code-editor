@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Rubik:wght@400;500;600&display=swap');
+$font-main:Rubik;
 #loginNotice {
   div {
     text-align: center;
@@ -9,6 +11,7 @@
 }
 
 #mainContent {
+  font-family: $font-main;
   width: 100%;
   height: 100%;
   font-size: 2em;
@@ -16,6 +19,7 @@
   text-align: center;
   color:#20222b;
   // background-image: url("./pages/images/IDE-622x415.jpg");
+  // filter: blur(8px);
   background-color: #f2f2f2;
   background-repeat: no-repeat;
   background-size: 100%;
@@ -34,37 +38,44 @@
   }
   .projectMain{
     width: 100%;
-    height: 100%;
+    height: 100vh;
     padding-top: 10vh;
-    background-color: #d3d3d3;
+    background-color: #ffffff;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
     #projectManager {
-      
-      h5{
-        font-size: 1.2em;
-      }
       margin-top: 20px;
       display: flex;
       flex-direction: column;
+      h5{
+        font-size: 1.2em;
+      }
       .title{
         text-decoration: none;
+        color:#f2f2f2;
         border: solid 1px #20222b;
-      }
-      .title:hover{
-        text-decoration: none;
+        width: 50%;
+        transform: translateX(50%);
+        border-radius: 5px;
+        background-color: #20222b;      
         cursor: pointer;
-        background-color: rgba(0,0,0,0.3);
       }
+      // .title:hover{
+      //   text-decoration: none;
+      //   cursor: pointer;
+      //   background-color: rgba(0,0,0,0.3);
+      // }
       .showProjects{
         display: flex;
         flex-direction: row;
         flex-wrap: wrap;
-        justify-content: space-around;
-        align-content: space-around;
+        justify-content: center;
         .elementCreated{
           display: flex;
           justify-content: center;
           text-decoration: none;
-          width: 45%;
+          width: 25%;
           height: 20vh;
           margin: 20px;
           align-items: center;
@@ -73,9 +84,10 @@
         }
         .elementCreated:hover{
           text-decoration: none;
+          color: #f2f2f2;
           background-color: transparent;
           cursor: pointer;
-          background-color: rgba(0,0,0,0.3);
+          background-color: #20222b;
           align-items: center;
         }
       }
