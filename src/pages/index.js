@@ -32,8 +32,13 @@ function HomePage({files}) {
     <div className={styles.projectMain}>
       <div id={styles.projectManager}>
         <h5>Project Manager</h5><br/>
-        <Link href={'/Editor/'}><div className={styles.title}>Add new</div></Link>
+        {!session && 
+          <div id={styles.loginNotice}>
+            <div>LogIn to see your projects!</div>
+          </div>}
         {session &&
+        <>
+        <Link href={'/Editor/'}><div className={styles.title}>Add new</div></Link>
         <div className={styles.showProjects}>
         {files.length > 0 ? files.map((file) => (
           
@@ -46,7 +51,8 @@ function HomePage({files}) {
         )) : ''}
         {files.length < 1 ? <div>No project created yet</div> : ''}
         
-        </div>}
+        </div>
+        </>}
         
       </div>
     </div>}
